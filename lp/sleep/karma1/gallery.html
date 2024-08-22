@@ -1,0 +1,83 @@
+
+    <style>
+        .gallery-container {
+            width: 100%;
+            max-width: 350px;
+            height: 100%;
+            max-height: 420px;
+            overflow: hidden;
+            position: relative;
+        }
+        .gallery {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .gallery img {
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+            margin: auto;
+        }
+        .button-container {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .button-container button {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            font-size: 2em;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .button-container button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+
+    <div class="gallery-container">
+        <div class="gallery">
+            <img src="comments/1.jpg">
+            <img src="comments/2.jpg">
+            <img src="comments/3.jpg">
+            <img src="comments/4.jpg">
+            <img src="comments/5.jpg">
+        </div>
+        <div class="button-container">
+            <button id="prev">&lt;</button>
+            <button id="next">&gt;</button>
+        </div>
+    </div>
+
+    <script>
+        const gallery = document.querySelector('.gallery');
+        const images = document.querySelectorAll('.gallery img');
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+        let currentIndex = 0;
+
+        function updateGallery() {
+            const offset = -currentIndex * 100;
+            gallery.style.transform = `translateX(${offset}%)`;
+        }
+
+        prevButton.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateGallery();
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentIndex < images.length - 1) {
+                currentIndex++;
+                updateGallery();
+            }
+        });
+    </script>
