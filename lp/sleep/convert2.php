@@ -43,6 +43,8 @@ if (($handle = fopen($file, "r")) !== FALSE) {
       if($row[$index['Type']] && $row[$index['ID']] != "" ) {
         //Question
 
+        //print_r($row);
+
         $current['ID']++;
         $current['Type']    = $row[$index['Type']];
         $current['AID']     = 0;
